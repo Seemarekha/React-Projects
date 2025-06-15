@@ -8,7 +8,11 @@ export const PostList = createContext({
 });
 
 const postListReducer = (currentPostList, action) => {
-    return currentPostList;
+    let newPostList = currentPostList;
+    if (action.type === 'DELETE_POST') {
+        newPostList = currentPostList.filter(post => post.id !== action.payload.postId)
+    }
+    return newPostList;
 }
 
 const PostListProvider = ({ children }) => {
@@ -18,7 +22,13 @@ const PostListProvider = ({ children }) => {
     const addPost = () => {
 
     }
-    const deletePost = () => {
+    const deletePost = (postId) => {
+        dispatchPostList({
+            type: 'DELETE_POST',
+            payload: {
+                postId,
+            }
+        })
 
     }
 

@@ -1,5 +1,6 @@
-import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+import './App.css';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
@@ -20,8 +21,7 @@ function App() {
         <div className='content'>
           <Header />
           {selectedTab === "Home" ? <PostList /> : <CreatePost />}
-          <CreatePost />
-          <PostList />
+
           <Footer />
         </div>
 
