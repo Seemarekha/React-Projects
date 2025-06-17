@@ -21,7 +21,7 @@ const postListReducer = (currentPostList, action) => {
 
 const PostListProvider = ({ children }) => {
 
-    const [postList, dispatchPostList] = useReducer(postListReducer, DEFAULT_POST_LIST);
+    const [postList, dispatchPostList] = useReducer(postListReducer, []);
 
     const addPost = (userId, postTitle, postBody, reactions, tags) => {
 
@@ -64,23 +64,6 @@ const PostListProvider = ({ children }) => {
     );
 };
 
-const DEFAULT_POST_LIST = [
-    {
-        id: '1',
-        title: 'Going to Goa',
-        body: 'Hi friens, I am going to Goa for my vacation. Hope to enjoy a lot. Peace out.',
-        reactions: 2,
-        userId: 'user-13',
-        tags: ['vacation', 'Goa', 'Enjoying']
-    },
-    {
-        id: '2',
-        title: 'Pass ho gya bhai',
-        body: '4 saal ki masti k baad v ho gye hain pass. Hard to believe.',
-        reactions: 15,
-        userId: 'user-9',
-        tags: ['Graduating', 'Unbelievable']
-    }
-];
+
 
 export default PostListProvider;
