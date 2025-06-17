@@ -4,14 +4,18 @@ import { PostList as PostListData } from "../store/post-list-store";
 import WelcomeMsg from "./WelcomeMsg";
 
 const PostList = () => {
-    const { postList } = useContext(PostListData);
+    const { postList, addInitialPosts } = useContext(PostListData);
 
     const handleGetPostsClick = () => {
         fetch('https://dummyjson.com/posts')
             .then(res => res.json())
-            .then(console.log);
+            .then(data => {
+                addInitialPosts(data.posts);
+            });
 
     };
+
+
 
     return (
         <>
