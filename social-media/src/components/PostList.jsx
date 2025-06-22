@@ -11,13 +11,18 @@ const PostList = () => {
 
     useEffect(() => {
         setFetching(true);
-        fetch('https://dummyjson.com/posts')
+        const controller=new AbortController();
+        const signal=controller.signal;
+
+        fetch('https://dummyjson.com/posts',{signal})
             .then(res => res.json())
             .then(data => {
                 addInitialPosts(data.posts);
                 setFetching(false);
             });
-
+        return () => {
+            controller.abort();
+        }
     }, [])
 
 
@@ -25,12 +30,12 @@ const PostList = () => {
     return (
         <>
             {
-              fetching && <LoadingSpinner />
+                fetching && <LoadingSpinner />
             }
             {
                 !fetching && postList.length === 0 && <WelcomeMsg />
             }
-            {  !fetching && postList.map((post) => (
+            {!fetching && postList.map((post) => (
                 <Post key={post.id} post={post} />
             ))}
 
